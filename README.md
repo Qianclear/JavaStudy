@@ -67,3 +67,130 @@ Java 所有的组成部分都需要名字。类名、变量名以及方法名都
 
 
 （src存源码bin存编译成的class文件）
+
+### java变量类型
+
+在Java语言中，所有的变量在使用前必须声明。声明变量的基本格式如下：  
+
+```type identifier [ = value][, identifier [= value] ...] ;```
+
+格式说明：type为Java数据类型。identifier是变量名。可以使用逗号隔开来声明多个同类型变量。
+
+以下列出了一些变量的声明实例。注意有些包含了初始化过程。
+
+> ```int a, b, c;```     // 声明三个int型整数:a、 b、c  
+>
+> ```int d = 3, e = 4, f = 5;``` // 声明三个整数并赋予初值  
+>
+> ```byte z = 22;```     // 声明并初始化 z  
+>
+> ```String s = "runoob";```  // 声明并初始化字符串 s  
+>
+> ```double pi = 3.14159; ```// 声明了双精度浮点型变量 pi  
+>
+> ```char x = 'x';    ```// 声明变量 x 的值是字符 'x'  
+
+### Java 局部变量
+
+局部变量在方法、构造方法、或者语句块被执行的时候创建，当它们执行完成后，变量将会被销毁；
+
+## Scanner入门
+
+### next()
+
+将下一个值作为字符串返回
+
+```java
+public static void main(){
+    Scanner scan = new Scanner(System.in);
+    System.out.println("next方式接收：");
+    if (scan.hasNext()) {
+        String str1 = scan.next();
+        System.out.println("输入的数据为：" + str1);
+    }
+    scan.close();
+}
+```
+
+### nextLine()
+
+ 将回车前的全部内容作为字符串返回 
+
+```
+public static void main(){
+    Scanner scan = new Scanner(System.in);
+    System.out.println("nextLine方式接收：");
+    if (scan.hasNextLine()) {    
+        String str = scan.nextLine();    
+        System.out.println("输入的数据为：" + str);
+    }
+    scan.close();
+}
+```
+
+#### 区别
+
+- next()
+  - 一定要读取到有效字符后才可以结束输入。直接输入空格、回车，都不能结束输入。
+  - 对输入有效字符之前遇到的空白（空格、回车），`next()` 方法会自动将其去掉。
+  - 只有输入有效字符后才将其后面输入的空白作为分隔符或者结束符。
+  - `next()` 不能得到带有空格的字符串。
+- nextLine()
+  - 以Enter为结束符,也就是说 `nextLine()`方法返回的是输入回车之前的所有字符。
+  - 可以获得空白。
+
+### nextInt() 
+
+ 将下一个值作为`int`返回，如果不是`int`类型则报错 
+
+``` java
+import java.util.Scanner;
+public class Example003 {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("nextInt方式接收：");
+		if(scan.hasNextInt()) {
+		    int i = scan.nextInt();
+		    System.out.println("输入的数据为："+ i);
+		}
+		else {
+			System.out.println("next is not int");
+		}
+		scan.close();
+		System.out.println("End");
+}
+}
+```
+
+### 总结
+
+使用之前最好使用```hasNextInt()```方法进行验证，再使用```nextInt()```读取   
+
+#### tips
+
+ `Scanner`对象在调用方法时会阻塞程序的运行   
+
+先从标准输入流`System.in`开始。  
+
+如果使用标准输入流`System.in`来作为参数，实例化`Scanner`对象的话，那么在调用`hasNextXxx()`或者`nextXxx()`时就会阻塞，因为此时输入为空。用户输入之后，`hasNextXxx()`将会从用户输入的左边开始判断，也就是用户输入的最开始。如果验证通过，则返回`true`，否则返回`false`。`hasNextXXX()`方法只会判断游标当前指向位置的内容符不符合验证规则，并不会使游标指向下一个。`nextXxx()`方法会使游标后移。
+
+#### 游标后移
+
+```java
+public class Example005 {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+        
+		System.out.println("next()=>" + scan.next());
+		System.out.println("nextInt()=>" + scan.nextInt());
+		System.out.println("nextFloat()=>" + scan.nextFloat());
+
+		System.out.println("nextLine()=>" + scan.nextLine());
+		System.out.println("next()=>" + scan.next());
+		System.out.println("end");
+
+		scan.close();
+	}
+
+}
+```
