@@ -42,11 +42,11 @@ Java 所有的组成部分都需要名字。类名、变量名以及方法名都
 
 类似于C...
 
-'''
+```
 
  public class HelloWorld {   /* 这是第一个Java程序    *它将打印Hello World    * 这是一个多行注释的示例    */    public static void main(String []args){       // 这是单行注释的示例       /* 这个也是单行注释的示例 */       System.out.println("Hello World");     } } 
 
-'''
+```
 
 ## java对象和类
 
@@ -67,6 +67,7 @@ Java 所有的组成部分都需要名字。类名、变量名以及方法名都
 
 
 （src存源码bin存编译成的class文件）
+<<<<<<< HEAD
 
 ### java变量类型
 
